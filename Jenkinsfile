@@ -24,4 +24,10 @@ pipeline{
             }
         }
     }
+    post{
+        always{
+            archiveArtifacts artifacts: '**/*.jar'
+            junit '**/surefire-reports/*.xml'
+        }
+    }
 }
