@@ -23,7 +23,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
-            -Dsonar.organization=Siddartha996
+            -Dsonar.organization=siddartha996
             "-Dsonar.projectName=petclinic"
             -Dsonar.projectKey=Siddartha996_spring-petclinic
 
