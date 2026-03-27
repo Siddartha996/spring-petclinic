@@ -15,7 +15,8 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Build and Sonar Analysis
-        run: mvn clean verify sonar:sonar \
+        run: |
+           mvn clean verify sonar:sonar \
           -Dsonar.organization=siddartha996 \
           -Dsonar.projectKey=Siddartha996_spring-petclinic \
           -Dsonar.host.url=https://sonarcloud.io \
