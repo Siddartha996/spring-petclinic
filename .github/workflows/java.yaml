@@ -17,7 +17,7 @@ jobs:
       - name: build Java with maven
         run: mvn package
       - name: Build and analyze
-        uses: SonarSource/sonarqube-scan-action@v4
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
@@ -26,4 +26,11 @@ jobs:
             -Dsonar.projectName=petclinic
             -Dsonar.host.url=https://sonarcloud.io 
             -Dsonar.projectKey=Siddartha996_spring-petclinic
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - name: Build and Sonar
+        run: mvn clean verify sonar:sonar \
+            -Dsonar.organization=siddartha996 \
+            -Dsonar.projectKey=Siddartha996_spring-petclinic \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
