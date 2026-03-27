@@ -11,26 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: git checkout
+      - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: build Java with maven
-        run: mvn package
-      - name: Build and analyze
-        uses: SonarSource/sonarqube-scan-action@v6
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=siddartha996
-            -Dsonar.projectName=petclinic
-            -Dsonar.host.url=https://sonarcloud.io 
-            -Dsonar.projectKey=Siddartha996_spring-petclinic
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-      - name: Build and Sonar
+      - name: Build and Sonar Analysis
         run: mvn clean verify sonar:sonar \
-            -Dsonar.organization=siddartha996 \
-            -Dsonar.projectKey=Siddartha996_spring-petclinic \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
+          -Dsonar.organization=siddartha996 \
+          -Dsonar.projectKey=Siddartha996_spring-petclinic \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
