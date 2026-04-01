@@ -1,0 +1,23 @@
+name: Java-workflow
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs: 
+  build:
+    name: my-spc
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Build and Sonar Analysis
+        run: |
+          mvn clean verify sonar:sonar \
+           -Dsonar.organization=siddartha996 \
+           -Dsonar.projectKey=Siddartha996_spring-petclinic \
+           -Dsonar.host.url=https://sonarcloud.io \
+           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
